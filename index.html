@@ -84,12 +84,64 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <h1 id="解题思路部分"><a href="#解题思路部分" class="headerlink" title="解题思路部分"></a>解题思路部分</h1><h2 id="Ginkgo22招新"><a href="#Ginkgo22招新" class="headerlink" title="Ginkgo22招新"></a>Ginkgo22招新</h2><p>按不同类型题目分类<del>错了当我没说</del></p>
-<p> &#x3D;&#x3D;misc&#x3D;&#x3D;<img src="C:\Users\孙义杰\Desktop\myBlog\source_posts\解题思路\图片1.png" alt="图片1"></p>
+<p> Misc</p>
+<p> <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/1.png" alt="1"></p>
+<p>Check_in</p>
+<p>​                               </p>
+<p>由题意知在平台隐藏着flag，则回主页仔细观察可得出</p>
+<h2 id="Wireshark"><a href="#Wireshark" class="headerlink" title="Wireshark"></a>Wireshark</h2><p> <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%872.png" alt="图片2"></p>
+<p> <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%873.png" alt="3"></p>
+<p>由及其离谱的名字以及后来更新的http hint，在用wireshark打开后用过滤器直接筛选http无果，改用直接flag搜索，搜索出一条info奇怪值，且只有一条procotol符合http值，便追踪此数据流，便可直出flag</p>
+<h2 id="png"><a href="#png" class="headerlink" title="png"></a>png</h2><p>看到题目以及附件形式便知道为隐写，先解压，后使用Stegsolve 打开，推测为简单的左右横轴移动出二维码，然而使用无果，便猜测可能是用rgb人眼看不到的几种颜色进行隐写，将r,g,b三个通道值改为0，颜色使用grb等等多次尝试无果，最后猜测为图片虚假宽高，</p>
+<p> <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%876.png" alt="6"></p>
+<p> <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%877.png" alt="7"></p>
+<p>则用WinHex打开查看数据</p>
+<p>发现宽高一致  ，并尝试修改高度，即出空白处为flag</p>
+<p> <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%878.png" alt="8"></p>
+<h2 id="、、bin"><a href="#、、bin" class="headerlink" title="、、bin"></a>、、bin</h2><p>由提示得16进制相关，先将附件解压得到txt，再用010打开导入16进制，</p>
+<p>并保存为zip文件 即出结果flag</p>
+<p> <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%879.png" alt="9"></p>
+<p> <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%8710.png" alt="图片10"></p>
+<p>完毕</p>
+<h2 id="crc"><a href="#crc" class="headerlink" title="crc"></a>crc</h2><p>由提示知为crc碰撞，为高效率，（因单个txt只有几字节且可知crc32值，直接暴力攻击时间过长）选择github上的crc32 – master组件，配合py2进行爆破，三个密钥组合而成</p>
+<p>   <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%8712.png" alt="图片12"></p>
+<p> <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%8713.png" alt="图片13"></p>
+<p><img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%8714.png" alt="图片14">以及在winrar打开时可只两个文件大小一致，一个不一致，所以在用cmd跑时须注意比对（中间犯了个错误，电脑上的ide过多导致前面用vs和蜘蛛试了多次，查询半天后才知道ctf中常用py2py3较多)</p>
+<p>Reverse</p>
+<h2 id="choice"><a href="#choice" class="headerlink" title="choice"></a>choice</h2><p>无从下手的Reverse，打开exe后茫然，查找半天后迈出一步即先用peid检查有无套壳，检查无误后上od，ida，最终在ida中静态分析提取出flag </p>
+<p> <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%8716.png" alt="图片16"></p>
+<p>结果为   flag{This_is_c0rrect_flag}s</p>
+<h2 id="dbg"><a href="#dbg" class="headerlink" title="dbg"></a>dbg</h2><p>收到提示为xdbg动态调整，拖入peid脱壳检查，</p>
+<p>  <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%8717.png" alt="图片17"></p>
+<p>发现为正常32位文件则用x32dbg打开，搜索有关字符串</p>
+<p>  <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%8718.png" alt="图片18"></p>
+<p>检索出后打开查看大意，下断点 </p>
+<p>慢慢运行，步进，查找</p>
+<p>  <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%8719.png" alt="图片19"></p>
+<p>观察到可疑命令，研读，为固定的字符串，输入后即可在程序里使用时用xdbg读出相应数据（65737265为其中一个）</p>
+<p>  <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%8721.png" alt="图片21"></p>
+<p>则在exe中输入65737265，则可命  令行跳转得flag</p>
+<p>  <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%8722.png" alt="图片22"></p>
+<p>Web</p>
+<h2 id="js-game"><a href="#js-game" class="headerlink" title="js_game"></a>js_game</h2><p>根据题目打开网页，小游戏难度过高不从此入手。根据提示“js里奇怪的字符”，则查看网页源码在js相关文件夹里找到注译</p>
+<p>  <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%8723.png" alt="图片23"></p>
+<p>经过相关查询发现此为fuck js 形式，则将此字符解密即得flag</p>
+<p>  <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%8724.png" alt="图片24"></p>
+<h2 id="A-New-Js-Game"><a href="#A-New-Js-Game" class="headerlink" title="A_New_Js_Game"></a>A_New_Js_Game</h2><p>可直接玩游戏获得，也可以：</p>
+<p>进入网页根据提示在js文件包里获取源码，根据推断发现可疑字符</p>
+<p>  <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%8725.png" alt="图片25"></p>
+<p>即得falg</p>
+<p>  <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%8726.png" alt="图片26"></p>
+<p>Crypto</p>
+<h2 id="编码知多少"><a href="#编码知多少" class="headerlink" title="编码知多少"></a>编码知多少</h2><p>由题以及提示知道此为编码题，base家族常用的几个相互转换即可（也可使用py递归），又两个等号联想为base64往下依次32，16，尝试即得题解</p>
+<p>  <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%8727.png" alt="图片27"></p>
+<p>  <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%8728.png" alt="图片28"></p>
+<p>毕。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" data-id="cl8sosphq0001cgqu436s432y" data-title="" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" data-id="cl8sqiy350001nsqu8pes13wm" data-title="" class="article-share-link">分享</a>
       
       
       
@@ -140,7 +192,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/02/hello-world/" data-id="cl8sosphm0000cgquhymybyw3" data-title="Hello World" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/10/02/hello-world/" data-id="cl8sqiy320000nsqug14k4utx" data-title="Hello World" class="article-share-link">分享</a>
       
       
       
