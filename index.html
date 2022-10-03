@@ -171,10 +171,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-10-03 15:55:11 / 修改时间：20:16:45" itemprop="dateCreated datePublished" datetime="2022-10-03T15:55:11+08:00">2022-10-03</time>
+              <time title="创建时间：2022-10-03 15:55:11" itemprop="dateCreated datePublished" datetime="2022-10-03T15:55:11+08:00">2022-10-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-04 00:47:42" itemprop="dateModified" datetime="2022-10-04T00:47:42+08:00">2022-10-04</time>
+              </span>
 
           
 
@@ -236,6 +242,17 @@
 <p>  <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%8725.png" alt="图片25"></p>
 <p>即得falg</p>
 <p>  <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%8726.png" alt="图片26"></p>
+<p> baby_rce</p>
+<p>由网页代码则知道逻辑，则用插件注入执行命令可得</p>
+<p> <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%8729.png" alt="图片29">                              </p>
+<h2 id="baby-upload"><a href="#baby-upload" class="headerlink" title="baby_upload"></a>baby_upload</h2><p>由题目提示且打开网页后为文件提交窗口，则推断为提交文件木马获得部分控制权而寻找flag</p>
+<p>   <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%8730.png" alt="图片30"></p>
+<p>则写一句话木马 </p>
+<p> <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%8731.png" alt="图片31"></p>
+<p>得到提示则打开网页为空白网页，试图使用命令来cat</p>
+<p>则可获取flag<img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%8735.png" alt="图片35"></p>
+<h2 id="ez-include"><a href="#ez-include" class="headerlink" title="ez_include"></a>ez_include</h2><p>由提示知为伪协议，则打开提示学习查表并初步验证可得为data协议，则用post相关命令可得flag</p>
+<p> <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%8734.png" alt="图片34"></p>
 <p>&#x3D;&#x3D;Crypto&#x3D;&#x3D;</p>
 <h2 id="编码知多少"><a href="#编码知多少" class="headerlink" title="编码知多少"></a>编码知多少</h2><p>由题以及提示知道此为编码题，base家族常用的几个相互转换即可（也可使用py递归），又两个等号联想为base64往下依次32，16，尝试即得题解</p>
 <p>  <img src="/2022/10/03/%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/%E5%9B%BE%E7%89%8727.png" alt="图片27"></p>
